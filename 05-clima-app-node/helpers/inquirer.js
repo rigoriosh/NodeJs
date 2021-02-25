@@ -8,7 +8,7 @@ const preguntas = [
         choices: [
             {
                 value: 1,
-                name: `${'1'.green}. Buscar ciudad'`
+                name: `${'1'.green}. Buscar ciudad`
             },
             {
                 value: 2,
@@ -61,36 +61,6 @@ const leerInput = async(message) => {
     return desc;
 }
 
-const listadoTareasBorrar = async(tareas = []) => {
-    
-
-    const choices = tareas.map((tarea, index) => {
-        return {
-            value: tarea.id,
-            name: `${(index + 1).toString().bold}. ${tarea.desc}`
-        }
-    });
-
-    choices.unshift({
-        value: 0,
-        name: '0.'.cyan + 'Cancelar'
-    })
-    
-    const preguntas = [
-        {
-            type: 'list',
-            name: 'id',
-            message: '¿Seleccione tarea a borrar?',
-            choices
-        }
-    ]    
-
-    const {id} = await inquirer.prompt(preguntas);
-    return id;
-
-
-}
-
 const confirmar = async(message) => {
     const question = {
         type: 'confirm',
@@ -126,11 +96,66 @@ const mostrarListadoCheckList = async(tareas = []) => {
 
 }
 
+const listadoTareasBorrar = async(tareas = []) => {
+    
+    const choices = tareas.map((tarea, index) => {
+        return {
+            value: tarea.id,
+            name: `${(index + 1).toString().bold}. ${tarea.desc}`
+        }
+    });
+
+    choices.unshift({
+        value: 0,
+        name: '0.'.cyan + 'Cancelar'
+    })
+    
+    const preguntas = [
+        {
+            type: 'list',
+            name: 'id',
+            message: '¿Seleccione tarea a borrar?',
+            choices
+        }
+    ]    
+
+    const {id} = await inquirer.prompt(preguntas);
+    return id;
+}
+
+const listarLugares = async(lugares = []) => {
+    
+    const choices = lugares.map((lugar, index) => {
+        return {
+            value: lugar.id,
+            name: `${(index + 1).toString().green.bold}. ${lugar.nombre}`
+        }
+    });
+
+    choices.push({
+        value: lugares.length + 1,
+        name: (lugares.length + 1).toString().cyan + ' Cancelar'
+    })
+    
+    const preguntas = [
+        {
+            type: 'list',
+            name: 'id',
+            message: '¿Seleccione item?',
+            choices
+        }
+    ]    
+
+    const {id} = await inquirer.prompt(preguntas);
+    return id;
+}
+
 module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
     listadoTareasBorrar,
     confirmar,
-    mostrarListadoCheckList
+    mostrarListadoCheckList,
+    listarLugares
 }

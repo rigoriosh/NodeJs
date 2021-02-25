@@ -27,3 +27,7 @@ Por favor abran y tengan a la mano los siguientes enlaces que necesitaremos:
 https://www.mapbox.com/
 
 https://docs.mapbox.com/api/search/geocoding/
+
+
+Trabajar con variables de entorno
+https://www.npmjs.com/package/dotenv
