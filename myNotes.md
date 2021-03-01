@@ -31,3 +31,24 @@ https://docs.mapbox.com/api/search/geocoding/
 
 Trabajar con variables de entorno
 https://www.npmjs.com/package/dotenv
+
+npm i dotenv
+
+////
+
+https://www.npmjs.com/package/handlebars
+https://github.com/pillarjs/hbs
+
+
+# citios para hacer publicaciones
+
+- https://www.heroku.com/
+- https://try.digitalocean.com/developerbrand/
+- https://cloud.google.com/
+- https://aws.amazon.com/free/
+- https://azure.microsoft.com/en-ca/free/search/
+- https://firebase.google.com/docs/hosting?hl=es
+- 
+
+# middlewares
+- https://www.npmjs.com/package/cors
