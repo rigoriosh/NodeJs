@@ -52,3 +52,12 @@ https://github.com/pillarjs/hbs
 
 # middlewares
 - https://www.npmjs.com/package/cors
+
+# DB
+https://mongoosejs.com/
+
+# encriptar passwords
+https://www.npmjs.com/package/bcryptjs
+
+# validaciones de campos
+https://www.npmjs.com/package/express-validator
