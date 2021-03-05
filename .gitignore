@@ -4,4 +4,4 @@ assets/
 
 outFiles/*.txt
 
-*.env
+.env
