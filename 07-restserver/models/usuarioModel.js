@@ -29,7 +29,7 @@ const UsuarioSchema = Schema({
     },
     img:{
         type: String,
-        required: [true, 'La imagen es obligatorio']
+        //required: [true, 'La imagen es obligatorio']
     },
     rol:{
         type: String,
@@ -46,8 +46,11 @@ const UsuarioSchema = Schema({
     },
     
 });
-
-
+//ocultar o quitar campos de modelo para no ser mostrados como respuesta al usuario
+UsuarioSchema.methods.toJSON = function () {
+    const {__v, password, ...user} = this.toObject(); //operador rest => ...user
+    return user;
+}
 
 
 

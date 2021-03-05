@@ -45,12 +45,11 @@ class Server{
         
         this.app.use(this.usuariosRoutPat, require('../routes/routUser'));
         
-
     }
 
     listen(){
         this.app.listen(this.port, () => {
-            console.log(`app listening at http://localhost:${this.port}`)
+            //console.log(`app listening at http://localhost:${this.port}`)
           })
     }
 }
