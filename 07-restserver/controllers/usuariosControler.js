@@ -1,5 +1,5 @@
 const {response} = require('express');
-const bcryptj = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 
 const UsuarioModel = require('../models/usuarioModel');
 
@@ -43,8 +43,8 @@ const usuariosPost = async(req, res) => {//end point post
         el salt es el nivel de complijidad del hast
         * el hash para encriptar en una sola via
      */
-    const salt = bcryptj.genSaltSync();
-    usuarioModel.password = bcryptj.hashSync(password, salt);
+    const salt = bcryptjs.genSaltSync();
+    usuarioModel.password = bcryptjs.hashSync(password, salt);
     //save in DB
     await usuarioModel.save();
     res.status(201).json({ 
@@ -58,8 +58,8 @@ const usuariosPut = async(req, res) => {//end point put update
     // TODO: validar a DB
     if (password) {
         //Encriptar password
-        const salt = bcryptj.genSaltSync();
-        restDeInfo.password = bcryptj.hashSync(password, salt);
+        const salt = bcryptjs.genSaltSync();
+        restDeInfo.password = bcryptjs.hashSync(password, salt);
     }
     const dataUsuarioActualizada = await UsuarioModel.findByIdAndUpdate(id, restDeInfo);
     res.status(202).json({ 
@@ -73,20 +73,28 @@ const usuariosPatch = (req, res) => {//end point patch
     });
 }
 const usuariosDelete = async(req, res) => {//end point delete
-    //console.log('in delete');
-    const {id} = req.params;
-    //console.log(id);
+    //console.log('in delete');    
+    const id = req.params.id
+    const userAuth = req.usuario;    
+    const uid = req.uid
+    //console.log({params});
+    //console.log({userAuth})
+    //console.log({req})
 
     /* Borrado fisicamente, no es utilizado por que se pierde la integridad referencial */
     //const usuario = await UsuarioModel.findByIdAndDelete(id);
 
     //opcion mas adecuada para eliminar usuarios
-    const usuario = await UsuarioModel.findByIdAndUpdate(id, {isActive: false});
+    const usuarioModificado = await UsuarioModel.findByIdAndUpdate(id, {isActive: false});
+    //console.log({usuario1})
+
     
     res.status(201).json({ 
         msg: 'delete API! - Controlador',
         id,
-        usuario
+        uid,
+        userAuth,
+        usuarioModificado
     });
 }
 

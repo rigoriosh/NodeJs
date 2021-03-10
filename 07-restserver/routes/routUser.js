@@ -4,7 +4,11 @@ const {check} = require('express-validator');
 const { usuariosGet, usuariosPost, usuariosPut, usuariosPatch, usuariosDelete 
     } = require("../controllers/usuariosControler");
 const { esRolValido, emailExiste, existUserById } = require("../helpers/db-validators");
-const { validarCampos } = require("../middlewares/validarCampos");
+
+/* const { validarJWT } = require("../middlewares/validar-jwt");
+const {esAdminRole, tieneRole} = require("../middlewares/validar-roles");
+const { validarCampos } = require("../middlewares/validarCampos"); */
+const {validarJWT, esAdminRole, tieneRole, validarCampos} = require('../middlewares'); //con esto le apunta al archivo index.js q esta en la carpeta ../middlewares la cual contiene el compilado de los archivos middlewares
 
 ///////////////////////////
 const router = Router();
@@ -37,7 +41,11 @@ router.put('*', (req, res) => {//end point put
 })
 
 router.patch('/', usuariosPatch)
+
 router.delete('/:id',[
+    validarJWT,
+    esAdminRole, //solo lo permite roles de administrador
+    tieneRole('ROL_owner', 'ROL_adminBar', 'ROL_user'),
     check('id', 'El id no es valido').isMongoId(),
     check('id').custom(existUserById),
     validarCampos

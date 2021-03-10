@@ -48,7 +48,8 @@ const UsuarioSchema = Schema({
 });
 //ocultar o quitar campos de modelo para no ser mostrados como respuesta al usuario
 UsuarioSchema.methods.toJSON = function () {
-    const {__v, password, ...user} = this.toObject(); //operador rest => ...user
+    const {__v, password, _id, ...user} = this.toObject(); //operador rest => ...user    
+    user['uid'] = _id    
     return user;
 }
 
