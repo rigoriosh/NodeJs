@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    
+    <title>Socket Cliente</title>
+</head>
+<body class="container">
+    <h1 class="mt-2">Chat familia Hueso</h1>
+    <hr>
+
+    <p>
+        Server Status:
+        <span id="lblOnline" class="text-success">OnLine</span>
+        <span id="lblOffline" class="text-danger">OffLine</span>
+        <p id="textIn"></p>
+    </p>
+
+    <div class="row">
+        <div class="col">
+            <input type="text" name="" id="txtMensaje" class="form-control">
+        </div>
+        <div class="col">
+            <button id="btnEnviar" class="btn btn-primary">Enviar</button>
+        </div>
+    </div>
+
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./js/socket-client.js"></script>
+</body>
+</html>
