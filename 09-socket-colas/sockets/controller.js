@@ -16,6 +16,33 @@ const socketController = (socket) => {
     socket.on('consultar-ultimo-ticket', (callback) => {
         callback(ticketControl.ultimoTicket);
     })
+    socket.emit('estado-actual', ticketControl.ultimos4);
+    
+
+    socket.on('atender-ticket', (payload, callback) => {
+        console.log(payload);
+        const {escritorio} = payload;
+        if (!escritorio) {
+            return callback(
+                {
+                    ok: false,
+                    msg: 'El escritorio es requerido'}
+            )
+        }          
+        const turno = ticketControl.atenderTicket(escritorio);
+        socket.broadcast.emit('estado-actual', ticketControl.ultimos4); //el broadcast espara emitir a varias pantallas
+        if (!turno) {
+            callback({
+                ok: false,
+                msg: 'Ya no hay turnos pendientes'
+            })
+        }else{
+            callback({
+                ok: true,
+                turno
+            })
+        }
+    })
     
     //console.log('Cliente conectado', socket.id );
 

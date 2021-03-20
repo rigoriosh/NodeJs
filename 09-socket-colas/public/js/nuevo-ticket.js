@@ -5,8 +5,6 @@ const btnCrear = document.querySelector("button");
 
 const socket = io();
 
-
-
 socket.on('connect', () => {
     console.log('Conectado');
 
@@ -21,7 +19,6 @@ socket.on('disconnect', () => {
 
     btnCrear.disabled = true;
 });
-
 
 /* socket.on('enviar-mensaje', (payload) => {
     console.log( payload )
