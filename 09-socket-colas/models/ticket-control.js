@@ -57,13 +57,17 @@ class TicketControl{
 
     atenderTicket(escritorio){
         if (this.tickets.length === 0)return null;
-
+        console.log('1', this.tickets);
         const turno = this.tickets.shift();
+        //console.log({turno});
+        //console.log('2', this.tickets);
         turno.escritorio = escritorio;
+        /* console.log(this.ultimos4);
+        console.log(this.ultimos4.unshift(turno)); */
+        this.ultimos4.unshift(turno);
+        //if (this.ultimos4.length < 5) this.ultimos4.unshift(turno);
 
-        if (this.ultimos4.length < 5) this.ultimos4.unshift(turno);
-
-        console.log(this.ultimos4);
+        //console.log(this.ultimos4);
         this.guardarDB();
 
         return turno;

@@ -31,4 +31,9 @@ socket.on('estado-actual', (payload, callback) => {
         lblTicket4.innerText = ticketString + ticket4.numero;
         lblEscritorio4.innerText = ticket4.escritorio;
     }
+    /* reproducir audio */
+    console.log('playing audio');
+    const audio = new Audio('./audio/new-ticket.mp3');
+    audio.play();
+
 });

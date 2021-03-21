@@ -4,11 +4,14 @@ const ticketControl = new TicketControl();
 
 const socketController = (socket) => {
 
+    socket.emit('estado-actual', ticketControl.ultimos4);
+    socket.emit('tickets-en-cola', ticketControl.tickets.length);
+
     socket.on('siguiente-ticket', ( payload, callback ) => {
         
         const siguiente = ticketControl.siguiente();
         callback(siguiente);
-
+        socket.broadcast.emit('tickets-en-cola', ticketControl.tickets.length);
         //TODO: Notificar q hay un ticket pendiente de asiganar
 
     })
@@ -16,9 +19,7 @@ const socketController = (socket) => {
     socket.on('consultar-ultimo-ticket', (callback) => {
         callback(ticketControl.ultimoTicket);
     })
-    socket.emit('estado-actual', ticketControl.ultimos4);
     
-
     socket.on('atender-ticket', (payload, callback) => {
         console.log(payload);
         const {escritorio} = payload;
@@ -41,26 +42,12 @@ const socketController = (socket) => {
                 ok: true,
                 turno
             })
+            socket.broadcast.emit('tickets-en-cola', ticketControl.tickets.length);
         }
     })
-    
-    //console.log('Cliente conectado', socket.id );
 
-    /* socket.on('disconnect', () => {
-        console.log('Cliente desconectado', socket.id );
-    }); */
-/* 
-    socket.on('enviar-mensaje', ( payload, callback ) => {
+    socket.on('ticketCola', (callback)=>{callback(ticketControl.tickets.length)});
         
-        const id = 123456789;
-        callback( id );
-
-        socket.broadcast.emit('enviar-mensaje', payload );
-
-    })
- */
-    
-
 }
 
 

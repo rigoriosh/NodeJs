@@ -3,6 +3,9 @@ const lblEscritorio = document.querySelector('h1');//tomar el primer h1 q encuen
 const btnAtender = document.querySelector('button');
 const lblTicket = document.querySelector('small');
 const divAlerta = document.querySelector('.alert');
+const lblPendientes = document.querySelector('#lblPendientes');
+
+
 
 divAlerta.style.display = 'none';
 
@@ -44,8 +47,12 @@ btnAtender.addEventListener('click', ()=>{
             return divAlerta.style.display = 'block';
         }
         lblTicket.innerText = 'Ticket ' + turno.numero;
-        
+        socket.emit('ticketCola', (res)=>{lblPendientes.innerText = res;});
     })
+});
+
+socket.on('tickets-en-cola', (payload)=>{
+    lblPendientes.innerText = payload;
 });
 
 /* socket.on('enviar-mensaje', (payload) => {
