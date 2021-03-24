@@ -19,6 +19,21 @@ https://www.npmjs.com/package/yargs
 
 ////////////////////////
 
+node whit typescript
+
+1_ tsc => para compilar
+2_ emplear dos concolas 1 para typescript y otra para js
+3_ en la consola typescript correr => tsc --watch
+4_ en la consola js correr => nodemon dist/app.js
+
+/// para configuracion de la DB las siguienetes opciones
+- ampps.com
+- wampserver.com
+- xampp
+- https://tableplus.com o tambien mySqlWorkbench
+- https://sequelize.org/ => nesecary to manage DB from node.js
+
+
 ```
 
 
