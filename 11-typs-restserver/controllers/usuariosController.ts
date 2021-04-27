@@ -80,3 +80,10 @@ export const deleteUsuario = async(req: Request, res: Response) => {
     }
     
 }
+
+export const rutaPrueba = async(req: Request, res: Response) => {
+    console.log('in prueba');
+    res.json({
+        msg: 'ok recibido',
+    })
+}

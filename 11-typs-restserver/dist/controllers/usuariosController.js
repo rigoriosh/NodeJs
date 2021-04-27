@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUsuario = exports.putUsuario = exports.postUsuario = exports.getUsuario = exports.getUsuarios = void 0;
+exports.rutaPrueba = exports.deleteUsuario = exports.putUsuario = exports.postUsuario = exports.getUsuario = exports.getUsuarios = void 0;
 const usuarioModel_1 = __importDefault(require("../models/usuarioModel"));
 const getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const usuarios = yield usuarioModel_1.default.findAll();
@@ -95,4 +95,11 @@ const deleteUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.deleteUsuario = deleteUsuario;
+const rutaPrueba = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('in prueba');
+    res.json({
+        msg: 'ok recibido',
+    });
+});
+exports.rutaPrueba = rutaPrueba;
 //# sourceMappingURL=usuariosController.js.map
