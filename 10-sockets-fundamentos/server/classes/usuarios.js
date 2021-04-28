@@ -1,6 +1,7 @@
 // {
 //     id: 'ALkjdaklsdj-asdkj',
 //     nombre: 'Fernando',
+//     sala: 'video juesgos'
 // }
 
 
@@ -8,7 +9,7 @@
 class Usuarios {
 
     constructor() {
-        this.personas = [];
+        this.personas = []; // personas conectadas al chat
     }
 
     agregarPersona(id, nombre, sala) {
